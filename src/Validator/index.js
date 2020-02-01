@@ -26,7 +26,8 @@
         catch_name = name
         catch_value = value
         catch_third = third
-        return validationlist[name] && validationlist[name].exe(received, value, third)
+        if(!validationlist[name]) throw new TypeError(`Validator does not recognize validate name "${name}" in '${attribute}' [validate="${validations}"]`)
+        return validationlist[name].exe(received, value, third)
       })
 
       if(isInvalid) {
