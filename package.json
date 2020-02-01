@@ -1,0 +1,27 @@
+{
+  "name": "mytabworks-utils",
+  "version": "2.0.0",
+  "description": "this is made for forms, it has Validator to validate the user inputs, and also has a DoneTypingEvent a eventListener that executes only when stop typing",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mytabworks/mytabworks-utils.git"
+  },
+  "keywords": [
+    "form-utils",
+    "validator-utility",
+    "form-validator-utility",
+    "donetypingevent-utility",
+    "done-typing",
+    "event"
+  ],
+  "author": "mytabworks",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mytabworks/mytabworks-utils/issues"
+  },
+  "homepage": "https://github.com/mytabworks/mytabworks-utils#readme"
+}
