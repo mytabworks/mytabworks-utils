@@ -58,7 +58,7 @@ module.exports = {
 ```
 
 #### second step
-on package.json script test put the --transformIgnorePatterns '/node_modules/(?!(?:mytabwork-utils))' after test.
+on package.json script test put the --transformIgnorePatterns '/node_modules/(?!(?:--repo-making-issue--))' after test.
 
 ```js
 "scripts": {
