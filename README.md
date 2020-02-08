@@ -7,12 +7,12 @@ It is a library of utilities which can help to front-end
     - [Customize Rule Usage](#validator-customize-rule-usage)
     - [Collection Field Usage](#validator-collection-field-usage)
     - [Rules]
-        - [Supported](#validator-current-or-supported-rules)
+        - [Supported](#validator-main-rules)
         - [Extensions](#validator-extension-rules)
     - [API]
-        - [`instance.fails(): boolean`](#validator-make-usage)
-        - [`instance.errors(): Map`](##validator-make-usage)
-        - [`Validator.make(data: object, rules: object): instance`](##validator-make-usage)
+        - [`instance.fails(): boolean`](#validator-collection-field-usage)
+        - [`instance.errors(): Map`](#validator-collection-field-usage)
+        - [`Validator.make(data: object, rules: object): instance`](#validator-collection-field-usage)
         - [`Validator.validate(recieved: string|array, rules: string, label: string): object`](#validator-basic-usage)
         - [`Validator.rulesExtend(rules: object): void`](#validator-extend-rules-usage)
 - [DoneTypingEvent](#donetypingevent)
@@ -163,7 +163,7 @@ if(validator.fails()) {
 
 ```
 
-## Validator current or supported rules
+## Validator Main Rules
 The main validation rules which is commonly use.
 |`NAME`       |`USE`                      |`DESCRIPTION`| `MESSAGE` |
 |-------------|---------------------------|-------------|-------------|
@@ -174,7 +174,7 @@ The main validation rules which is commonly use.
 | mimes       | mimes:jpeg,pdf,rar        | it will validate the specific mimes of the files which are allowed| The :attribute only allows :mimes|
 | alpha       | alpha                     | it will validate if the field value is only contain letter | The :attribute may only contain letters|
 
-## Validator extension rules
+## Validator Extension Rules
 The extension rules that can be extended by importing [@mytabworks/form-utils/extend/rules](#validator-extend-rules-usage). these validation rules are excluded in the main rules because these are not often use in the form, so to reduce the payload mytabworks decided to remove these from the main list and became an extension when needed.
 |`NAME`       |`USE`                        |`DESCRIPTION`| `MESSAGE` |
 |-------------|---------------------------  |-------------|-------------|
