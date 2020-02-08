@@ -152,7 +152,7 @@ it is use to fire the event after user done typing, that will save a lot of unes
 jest test SyntaxError: unexpected token export? no problem!
 
 ## First solution
-Add to your jest configuration the transformIgnorePatterns containing /node_modules/(?!(?:mytabwork-utils))
+Add to your jest configuration the transformIgnorePatterns containing /node_modules/(?!(?:--repo-making-issue--))
 
 ```js
 "transformIgnorePatterns": [
