@@ -4,7 +4,7 @@ It is a library of utilities which can help to front-end
 - [Validator](#validator)
     - [Basic Usage](#validator-basic-usage)
     - [Extend Rules Usage](#validator-extend-rules-usage)
-    - [Customize Rule Usage](#validator-customize-rule)
+    - [Customize Rule Usage](#validator-customize-rule-usage)
     - [Collection Field Usage](#validator-collection-field-usage)
     - [Rules]
         - [Supported](#validator-current-or-supported-rules)
@@ -164,7 +164,7 @@ if(validator.fails()) {
 ```
 
 ## Validator current or supported rules
-
+The main validation rules which is commonly use.
 |`NAME`       |`USE`                      |`DESCRIPTION`| `MESSAGE` |
 |-------------|---------------------------|-------------|-------------|
 | required    | required                  | it will require the form field to be filled| The :attribute field is required |
@@ -175,7 +175,7 @@ if(validator.fails()) {
 | alpha       | alpha                     | it will validate if the field value is only contain letter | The :attribute may only contain letters|
 
 ## Validator extension rules
-
+The extension rules that can be extended by importing [@mytabworks/form-utils/extend/rules](#validator-extend-rules-usage). these validation rules are excluded in the main rules because these are not often use in the form, so to reduce the payload mytabworks decided to remove these from the main list and became an extension when needed.
 |`NAME`       |`USE`                        |`DESCRIPTION`| `MESSAGE` |
 |-------------|---------------------------  |-------------|-------------|
 | alpha_space | alpha_space       | it will validate if the field only contain letters with spaces | The :attribute must contain alphabet with spaces |
@@ -205,11 +205,11 @@ export const Input () => (
 ```
 
 
-# Jest Test issue?
+## Jest Test issue?
 
 jest test SyntaxError: unexpected token export? no problem!
 
-## First solution
+### First solution
 Add to your jest configuration the transformIgnorePatterns containing /node_modules/(?!(?:--repo-making-issue--))
 
 ```js
@@ -218,9 +218,9 @@ Add to your jest configuration the transformIgnorePatterns containing /node_modu
 ]
 ```
 
-## Second solution
+### Second solution
 
-### First step
+#### First step
 You need to change .babelsrc to babel.config.js. in case you dont have .babelsrc you can create babel.config.js,
 and copy your babel configuration in package.json then paste it in your babel.config.js. like below
 
@@ -232,7 +232,7 @@ module.exports = {
 }
 ```
 
-### Second step
+#### Second step
 on package.json script test put the --transformIgnorePatterns '/node_modules/(?!(?:--repo-making-issue--))' after test.
 
 ```js
