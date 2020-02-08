@@ -46,7 +46,7 @@
   }
   
   if(window.document)
-    return window.DoneTypingEvent
+    return window.DoneTypingEvent = DoneTypingEvent
 
   return DoneTypingEvent
 }) 
