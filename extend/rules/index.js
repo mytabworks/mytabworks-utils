@@ -16,14 +16,14 @@
         
         alpha_space: {
             regexp: /^[A-Za-z\s]+$/,
-            message: 'The :attribute must contain alphabet with spaces.',
+            message: 'The :attribute must contain letters with spaces.',
             exe(received) {
             return received.length && !this.regexp.test(received)
             }
         },
 
         alpha_dash: {
-            regexp: /^[a-zA-Z0-9-]+$/,
+            regexp: /^[a-zA-Z\d-]+$/,
             message: 'The :attribute may only contain letters, numbers, and dashes.',
             exe(received) {
             return received.length && !this.regexp.test(received)
@@ -31,7 +31,7 @@
         },
 
         alpha_num: {
-            regexp: /^[A-Z-a-z\d]+$/,
+            regexp: /^[a-zA-Z\d]+$/,
             message: 'The :attribute may only contain letters and numbers.',
             exe(received) {
             return received.length && !this.regexp.test(received)
