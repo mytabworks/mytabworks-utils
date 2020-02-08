@@ -7,7 +7,7 @@ It is a library of utilities which can help to front-end
     - [Customize Rule Usage](#validator-customize-rule-usage)
     - [Collection Field Usage](#validator-collection-field-usage)
     - [Rules]
-        - [Supported](#validator-main-rules)
+        - [Main](#validator-main-rules)
         - [Extensions](#validator-extension-rules)
     - [API]
         - [`instance.fails(): boolean`](#validator-collection-field-usage)
