@@ -16,7 +16,7 @@
         
         alpha_space: {
             regexp: /^[A-Za-z\s]+$/,
-            message: 'The :attribute must contain alphabet with spaces',
+            message: 'The :attribute must contain alphabet with spaces.',
             exe(received) {
             return received.length && !this.regexp.test(received)
             }
@@ -65,15 +65,15 @@
         required_if: {
             message: 'The :attribute field is required when :required_if is :third_party.',
             exe(received, name, value) {
-            const [realname] = name.split('@')
-            const [realvalue] = value.split('@')
-            if(realname)
-                name = realname
-            if(realvalue)
-                value = realvalue
-            const target = document.querySelector(`[name="${name}"]`)
-            if(!target) throw Error(`form (input, select, or textarea) that has a attribute [name = "${name}"] doesn't exist`)
-            return !received.length && target.value === value.trim()
+                const [realname] = name.split('@')
+                const [realvalue] = value.split('@')
+                if(realname)
+                    name = realname
+                if(realvalue)
+                    value = realvalue
+                const target = document.querySelector(`[name="${name}"]`)
+                if(!target) throw Error(`form (input, select, or textarea) that has a attribute [name = "${name}"] doesn't exist`)
+                return !received.length && new RegExp(`^${value.trim()}$`).test(target.value)
             }
         },
 

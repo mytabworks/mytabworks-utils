@@ -48,17 +48,17 @@
         message = validationlist_message.replace(':attribute', attribute)
 
         if(catch_value) {
-          if(Validator.supportAlias.includes(catch_name)) {
+          if(catch_value.includes('@')) {
             const [ , alias] = catch_value.split('@')
-            if(alias) catch_value = alias
+            catch_value = alias
           }
           message = message.replace(`:${catch_name}`, (catch_value || '').replace(',', ', '))
         }
 
         if(catch_third) {
-          if(Validator.supportAlias.includes(catch_name)) {
+          if(catch_third.includes('@')) {
             const [ , alias] = catch_third.split('@')
-            if(alias) catch_third = alias
+            catch_third = alias
           }
           message = message.replace(':third_party', catch_third)
         }
@@ -144,15 +144,6 @@
           const filename = file.name.split('.')
           return mimes.includes(filename[filename.length - 1])
         })
-
-      }
-    },
-
-    max_size: {
-      message: 'The :attribute may not be greater :max_size kilobytes.',
-      exe(received, max_size) {
-        max_size = parseInt(max_size)
-        return received.length && Array.from(received).some(value => (value.size/1000) > max_size)
       }
     }
   }
