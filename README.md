@@ -2,23 +2,23 @@
 It is a library of utilities which can help to front-end
 
 - [Validator](#validator)
-    -[Basic Usage](#validator-basic-usage)
-    -[Extend Rules Usage](#validator-extend-rules-usage)
-    -[Customize Rule Usage](#validator-customize-rule)
-    -[Collection Field Usage](#validator-collection-field-usage)
-    -[Rules]
-        -[Supported](#validator-current-or-supported-rules)
-        -[Extensions](#validator-extension-rules)
-    -[API]
-        -[`instance.fails(): boolean`](#validator-make-usage)
-        -[`instance.errors(): Map`](##validator-make-usage)
-        -[`Validator.make(data: object, rules: object): instance`](##validator-make-usage)
-        -[`Validator.validate(recieved: string|array, rules: string, label: string): object`](#validator-basic-usage)
-        -[`Validator.rulesExtend(rules: object): void`](#validator-extend-rules-usage)
+    - [Basic Usage](#validator-basic-usage)
+    - [Extend Rules Usage](#validator-extend-rules-usage)
+    - [Customize Rule Usage](#validator-customize-rule)
+    - [Collection Field Usage](#validator-collection-field-usage)
+    - [Rules]
+        - [Supported](#validator-current-or-supported-rules)
+        - [Extensions](#validator-extension-rules)
+    - [API]
+        - [`instance.fails(): boolean`](#validator-make-usage)
+        - [`instance.errors(): Map`](##validator-make-usage)
+        - [`Validator.make(data: object, rules: object): instance`](##validator-make-usage)
+        - [`Validator.validate(recieved: string|array, rules: string, label: string): object`](#validator-basic-usage)
+        - [`Validator.rulesExtend(rules: object): void`](#validator-extend-rules-usage)
 - [DoneTypingEvent](#donetypingevent)
-    -[Usage](#donetypingevent-basic-usage)
-    -[API]
-        -[`DoneTypingEvent(handler: function): object`](#donetypingevent-basic-usage)
+    - [Usage](#donetypingevent-basic-usage)
+    - [API]
+        - [`DoneTypingEvent(handler: function): object`](#donetypingevent-basic-usage)
   
 ## Validator
 it is use to validate the user form fields, before it submiting into the server. the validation style is inspired by Laravel Validator.
