@@ -12,74 +12,8 @@
 // Pass this if window is not defined yet
 } )( typeof window !== "undefined" ? window : this, function( window ) { 
   
-  class Validator {
-    constructor(extension) {
-        Validator.extend(extension)
-    }
+  const validationlist = {
 
-    validate(received, validations, attribute) {
-      const validationlist = Validator.validationlist
-      const array_validations = validations.split('|')
-      let catch_name, catch_value, catch_third
-      const isInvalid = array_validations.some((validation, index) => {
-        const [name, value, third] = validation.split(/:|=/)
-        catch_name = name
-        catch_value = value
-        catch_third = third
-        if(!validationlist[name]) throw new TypeError(`Validator does not recognize validate name "${name}" in '${attribute}' [validate="${validations}"]`)
-        return validationlist[name].exe(received, value, third)
-      })
-
-      if(isInvalid) {
-        let validationlist_message = validationlist[catch_name].message
-        let message;
-        if(validationlist_message.toString() === '[object Object]') {
-          if(typeof received === 'string') {
-            validationlist_message = validationlist_message.string
-          } else if(!isNaN(parseInt(received))) {
-            validationlist_message = validationlist_message.numeric
-          } else if(Array.isArray(received)) {
-            validationlist_message = validationlist_message.array
-          } else {
-            validationlist_message = validationlist_message.file
-          }
-        }
-
-        message = validationlist_message.replace(':attribute', attribute)
-
-        if(catch_value) {
-          if(catch_value.includes('@')) {
-            const [ , alias] = catch_value.split('@')
-            catch_value = alias
-          }
-          message = message.replace(`:${catch_name}`, (catch_value || '').replace(',', ', '))
-        }
-
-        if(catch_third) {
-          if(catch_third.includes('@')) {
-            const [ , alias] = catch_third.split('@')
-            catch_third = alias
-          }
-          message = message.replace(':third_party', catch_third)
-        }
-
-        return {
-          isInvalid,
-          message
-        }
-      }
-
-      return { isInvalid }
-    }
-  }
-
-  Validator.extend = function (extension) {
-    Object.assign(Validator.validationlist, extension)
-  }
-
-  Validator.supportAlias = ['required_if', 'same']
-  
-  Validator.validationlist = {
     alpha: {
       regexp: /^[A-Za-z]+$/,
       message: 'The :attribute may only contain letters.',
@@ -106,7 +40,7 @@
       exe(received, max) {
         max = parseInt(max)
 
-        return !isNaN(parseInt(received)) ?
+        return !Array.isArray(received) && !isNaN(parseInt(received)) ?
           received && parseInt(received) > max
         :
           received.length && received.length > max
@@ -123,7 +57,7 @@
       exe(received, min) {
         min = parseInt(min)
 
-        return !isNaN(parseInt(received)) ?
+        return !Array.isArray(received) && !isNaN(parseInt(received)) ?
           received && parseInt(received) < min
         :
           received.length && received.length < min
@@ -146,6 +80,96 @@
         })
       }
     }
+  }
+
+  class Validator {
+    constructor(data, rules) {
+        this.data = data
+        this.rules = rules
+        this.messages = []
+    }
+
+    fails() {
+      let isFail = false
+
+      this.messages = Object.keys(this.rules).map((name) => { 
+        const { rules, label } = this.rules[name]
+        const validate = Validator.validate(this.data[name], rules, label || name)
+        if(validate.isInvalid && !isFail) {
+          isFail = true
+        }
+        return [name, validate.message]
+      })
+      .filter(([, message]) => !!message)
+
+      return isFail
+    }
+
+    errors() {
+      return new Map(this.messages)
+    }
+  }
+
+  Validator.make = function (data, rules) {
+    return new Validator(data, rules)
+  }
+
+  Validator.validate = function (received, rules, attribute) {
+    const array_rules = rules.split('|')
+    let catch_name, catch_value, catch_third
+    const isInvalid = array_rules.some((validation, index) => {
+      const [name, value, third] = validation.split(/:|=/)
+      catch_name = name
+      catch_value = value
+      catch_third = third
+      if(!validationlist[name]) throw new TypeError(`Validator does not recognize validate name "${name}" in '${attribute}' [validate="${rules}"]`)
+      return validationlist[name].exe(received, value, third)
+    })
+
+    if(isInvalid) {
+      let validationlist_message = validationlist[catch_name].message
+      let message;
+      if(validationlist_message.toString() === '[object Object]') {
+        if(!Array.isArray(received) && !isNaN(parseInt(received))) {
+          validationlist_message = validationlist_message.numeric
+        } else if(typeof received === 'string') {
+          validationlist_message = validationlist_message.string
+        } else if(Array.isArray(received)) {
+          validationlist_message = validationlist_message.array
+        } else {
+          validationlist_message = validationlist_message.file
+        }
+      }
+
+      message = validationlist_message.replace(':attribute', attribute)
+
+      if(catch_value) {
+        if(catch_value.includes('@')) {
+          const [ , alias] = catch_value.split('@')
+          catch_value = alias
+        }
+        message = message.replace(`:${catch_name}`, (catch_value || '').replace(/,/g, ', '))
+      }
+
+      if(catch_third) {
+        if(catch_third.includes('@')) {
+          const [ , alias] = catch_third.split('@')
+          catch_third = alias
+        }
+        message = message.replace(':third_party', catch_third)
+      }
+
+      return {
+        isInvalid,
+        message
+      }
+    }
+
+    return { isInvalid, message: null }
+  }
+
+  Validator.rulesExtend = function (extension) {
+    Object.assign(validationlist, extension)
   }
     
   if(window.document)
