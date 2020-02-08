@@ -142,7 +142,7 @@
       exe(received, mimes) {
         return !Array.from(received).every(file => {
           const filename = file.name.split('.')
-          return mimes.includes(filename[filename.length - 1])
+          return mimes.includes(filename[filename.length - 1].toLowerCase())
         })
       }
     }
