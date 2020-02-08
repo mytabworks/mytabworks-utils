@@ -1,2 +1,4 @@
-export { default as Validator } from './Validator'
-export { default as DoneTypingEvent } from './DoneTypingEvent'
+const Validator = require('./Validator')
+const DoneTypingEvent = require('./DoneTypingEvent')
+
+module.exports = { Validator, DoneTypingEvent}

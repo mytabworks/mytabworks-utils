@@ -2,7 +2,7 @@
 It is a small function of utilities that is build from the ground up
 
 ## Validator
-it is use to validate the user inputs, before it will submit into the server
+it is use to validate the user form fields, before it submiting into the server. the validation style is inspired by Laravel Validator.
 
 ### Validator Basic Usage
 ```js
@@ -11,7 +11,7 @@ it is use to validate the user inputs, before it will submit into the server
     const validator = new Validator()
     const email = document.getElementById("email") 
     const received = email.value // "sample@"
-    const validations = "required|email|min:10|max:20" //
+    const validations = "required|email|min:10|max:20" // validations are chainable
     const label = email.name // Email
     const email_result = validator.validate(received, validations, label)
     console.log(email_result) 
@@ -36,16 +36,16 @@ To prevent Validator to be expensive in payload. It is decided to include only t
         url 
     } from "mytabworks-utils/extend/validator";
     
-    Validator.extend({ max_size, min_size })
+    Validator.extend({ max_size, min_size }) // extending max_size and min_size
 
     const validator = new Validator()
     const file = document.querySelector(`input[name="file"]`)
-    const received = file.files /*imagine files name is photo.jpeg*/
+    const received = file.files /*imagine files name is photo.jpeg and have 1000kb size*/
     const validations = "required|max:2|mimes:jpeg,jpg|max_size:3000"
     const label = file.name // file
     const file_result = validator.validate(received, validations, label)
     console.log(file_result) 
-    //{ isInvalid: false }
+    //{ isInvalid: false } 
 ```
 ### Validator Customize validation
 It can extend customize validation.
@@ -107,18 +107,18 @@ It can extend customize validation.
     /*{ isInvalid: true, message: "The Confirm field is required when Password is contain value." }*/
 ```
 
-## Validator default validations
+## Validator current validations
 
 |`NAME`       |`USE`                      |`DESCRIPTION`| `MESSAGE` |
 |-------------|---------------------------|-------------|-------------|
-| required    | required\|email  | it will require the form field to be filled| The :attribute field is required |
+| required    | required                  | it will require the form field to be filled| The :attribute field is required |
 | email       | email                     | it will validate if the field contain a valid e-mail| The :attribute field must be valid email|
 | min         | min:6                     | it will validate the minumum character, number, checkbox is checked, select(multiple) is selected, file(multiple) is selected | The :attribute field must be atleast :min (character, items, files) |
 | max         | max:12                    | it will validate the maximum character, number, checkbox is checked, select(multiple) is selected, file(multiple) is selected | The :attribute field may not be greater than :max (character, items, files) |
 | mimes       | mimes:jpeg,pdf,rar        | it will validate the specific mimes of the files which are allowed| The :attribute only allows :mimes|
 | alpha       | alpha                     | it will validate if the field value is only contain letter | The :attribute may only contain letters|
 
-## Validator extensions validations
+## Validator extension validations
 
 |`NAME`       |`USE`                        |`DESCRIPTION`| `MESSAGE` |
 |-------------|---------------------------  |-------------|-------------|
@@ -128,7 +128,7 @@ It can extend customize validation.
 | url         | url                         | it will validate if the field contain valid url | The :attribute must be a valid url. |
 | max_size    | max_size:1000               | it will validate if the field contain a maximum file size and the size must calculate in kilobytes| The :attribute may not be greater :max_size kilobytes.|
 | min_size    | min_size:1000               | it will validate if the field contain a minimum file size and the size must calculate in kilobytes| The :attribute must be atleast :min_size kilobytes.|
-| required_ifn| required_if:level=1         | it will require the field if a certain field matches the value of the declared | The :attribute field is required when :required_if is :third_party. | 
+| required_if | required_if:level=1         | it will require the field if a certain field matches the value of the declared | The :attribute field is required when :required_if is :third_party. | 
 | same        | same:password               | it will validate if the field contain the same value | The :attribute and :same must match. |
 
 ## DoneTypingEvent

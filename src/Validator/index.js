@@ -109,7 +109,7 @@
         return !isNaN(parseInt(received)) ?
           received && parseInt(received) > max
         :
-          received && received.length > max
+          received.length && received.length > max
       }
     },
 
@@ -126,7 +126,7 @@
         return !isNaN(parseInt(received)) ?
           received && parseInt(received) < min
         :
-          received && received.length < min
+          received.length && received.length < min
       }
     },
 
