@@ -21,20 +21,14 @@ it is use to validate the user form fields, before it submiting into the server.
 ### Validator extend validations
 To prevent Validator to be expensive in payload. It is decided to include only the common validation like required|email|min:number|max:number|mimes:string</br>
 
-`note! validations must be tight without spaces`
+`note! validations must be tight without spaces`</br>
 `note! validator is reusable, when you extending validations you only need to extend it once`
 ```js
     import { Validator } from "mytabworks-utils";
     import { 
         max_size, 
-        min_size, 
-        required_if, 
-        same, 
-        alpha_dash, 
-        alpha_space, 
-        alpha_num, 
-        url 
-    } from "mytabworks-utils/extend/validator";
+        min_size
+    } from "mytabworks-utils/extend/validations";
     
     Validator.extend({ max_size, min_size }) // extending max_size and min_size
 
@@ -54,23 +48,23 @@ It can extend customize validation.
     import {  
         required_if, 
         same
-    } from "mytabworks-utils/extend/validator";
+    } from "mytabworks-utils/extend/validations";
 
     const strong_password = {
         regexp: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).+$/g,
         exe(
             received, /*it is the value of the input you put*/
-            value, /*required_if:value*/ /*it is the value of the validations like in the front line*/
-            value_of_value /*required_if:value=value_of_value*/ /*it is the value-of-value of the validations like in the front line*/
+            first_param, /*validations:first_param*/
+            second_param /*validations:first_param=second_param*/
         ) {
-            /*we don't need value and value_of_value for these*/
-            /*must return true when received is invalid*/
+            /*we don't need first_param and second_param for this validation*/
+            /*must return true when it is INVALID*/
             return !this.regexp.test(received)
         },
         message: "The :attribute must have 1 small letter, 1 capital letter, 1 number, and 1 special character"
         /*note! the :attribute is replace with the label of the form field you validate*/
-        /*note! if you require value in your validations you must put the same name as your validation like :strong_password in the message*/
-        /*note! if you require value-of-value you must put :third_party in the message*/
+        /*note! if you have first_param in your validations you must put the same name as your validation like :strong_password in the message*/
+        /*note! if you have second_param you must put :third_party in the message*/
     }
 
     Validator.extend({ required_if, same, strong_password })
@@ -107,7 +101,7 @@ It can extend customize validation.
     /*{ isInvalid: true, message: "The Confirm field is required when Password is contain value." }*/
 ```
 
-## Validator current validations
+## Validator current or supported validations
 
 |`NAME`       |`USE`                      |`DESCRIPTION`| `MESSAGE` |
 |-------------|---------------------------|-------------|-------------|
@@ -122,14 +116,14 @@ It can extend customize validation.
 
 |`NAME`       |`USE`                        |`DESCRIPTION`| `MESSAGE` |
 |-------------|---------------------------  |-------------|-------------|
-| alpha_space | required\|alpha_space       | it will validate if the field only contain letters with spaces | The :attribute must contain alphabet with spaces |
+| alpha_space | alpha_space       | it will validate if the field only contain letters with spaces | The :attribute must contain alphabet with spaces |
 | alpha_num   | alpha_num                   | it will validate if the field contain letters with numbers| The :attribute may only contain letters and numbers.|
 | alpha_dash  | alpha_dash                  | it will validate if the field contain letters with numbers and dashes | The :attribute may only contain letters, numbers, and dashes.|
 | url         | url                         | it will validate if the field contain valid url | The :attribute must be a valid url. |
 | max_size    | max_size:1000               | it will validate if the field contain a maximum file size and the size must calculate in kilobytes| The :attribute may not be greater :max_size kilobytes.|
 | min_size    | min_size:1000               | it will validate if the field contain a minimum file size and the size must calculate in kilobytes| The :attribute must be atleast :min_size kilobytes.|
-| required_if | required_if:level=1         | it will require the field if a certain field matches the value of the declared | The :attribute field is required when :required_if is :third_party. | 
-| same        | same:password               | it will validate if the field contain the same value | The :attribute and :same must match. |
+| required_if | required_if:target_field=target_expected_value | it will require the field, if the target field matches the expected value | The :attribute field is required when :required_if is :third_party. | 
+| same        | same:target_field               | it will validate the field until the target field contain the same value | The :attribute and :same must match. |
 
 ## DoneTypingEvent
 it is use to fire the event after user done typing, that will save a lot of unessesary execution while typing, especially in React when using state

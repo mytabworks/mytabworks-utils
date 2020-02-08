@@ -1,6 +1,6 @@
 {
   "name": "mytabworks-utils",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "this is made for forms, it has Validator to validate the user inputs, and also has a DoneTypingEvent a eventListener that executes only when stop typing",
   "main": "src/index.js",
   "scripts": {

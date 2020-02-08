@@ -89,7 +89,7 @@
     },
 
     email: {
-      regexp: /^[\w.]{2,40}@[\w]{2,20}.[a-z]{2,3}$/,
+      regexp: /^[\w.]{2,40}@[\w]{2,20}\.[a-z]{2,3}(?:\.[a-z]{2})?$/,
       message: 'The :attribute must be a valid email.',
       exe(received) {
         return received.length && !this.regexp.test(received)
