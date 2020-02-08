@@ -19,6 +19,7 @@ It is a library of utilities which can help to front-end
     - [Usage](#donetypingevent-basic-usage)
     - [API]
         - [`DoneTypingEvent(handler: function): object`](#donetypingevent-basic-usage)
+- [License](#license)
   
 ## Validator
 it is use to validate the user form fields, before it submiting into the server. the validation style is inspired by Laravel Validator.

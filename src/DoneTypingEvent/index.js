@@ -23,11 +23,11 @@
         const FakeEvent = { type, target, keyCode }
         typeof withKeyboardCB === 'function' && type !== 'blur' && withKeyboardCB(event)
 
-        if(timeoutReference && isInputBlurOrPressEnter)
-        {
-          clearTimeout(timeoutReference);
-
-          timeoutReference = undefined
+        if(isInputBlurOrPressEnter) {
+          if(timeoutReference) {
+            clearTimeout(timeoutReference); 
+            timeoutReference = undefined
+          }
           return callback(FakeEvent);
         }
 
