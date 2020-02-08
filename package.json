@@ -1,10 +1,10 @@
 {
-  "name": "mytabworks-utils",
-  "version": "1.0.3",
-  "description": "this is made for forms, it has Validator to validate the user inputs, and also has a DoneTypingEvent a eventListener that executes only when stop typing",
+  "name": "@mytabworks/form-utils",
+  "version": "0.1.0",
+  "description": "this is a utilities for maximize forms",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -13,8 +13,8 @@
   "keywords": [
     "form-utils",
     "mytabworks",
-    "validator-utility",
-    "form-validator-utility",
+    "form-utility",
+    "form-validator",
     "donetypingevent-utility",
     "done-typing",
     "event"
@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/mytabworks/mytabworks-utils/issues"
   },
-  "homepage": "https://github.com/mytabworks/mytabworks-utils#readme"
+  "homepage": "https://github.com/mytabworks/mytabworks-utils#readme",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
 }
