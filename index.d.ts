@@ -1,2 +1,2 @@
-declare module '@mytabworks/form-utils';
-declare module '@mytabworks/form-utils/extend/rules';
+declare module 'mytabworks-utils';
+declare module 'mytabworks-utils/extend/rules';

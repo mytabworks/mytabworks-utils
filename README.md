@@ -1,4 +1,4 @@
-# @mytabworks/form-utils
+# mytabworks-utils
 It is a library of utilities which can help to front-end
 
 - [Validator](#validator)
@@ -25,7 +25,7 @@ it is use to validate the user form fields, before it submiting into the server.
 
 ### Validator Basic Usage
 ```js
-import { Validator } from "@mytabworks/form-utils";
+import { Validator } from "mytabworks-utils";
 
 const result = Validator.validate("sample_sadas@", "required|email|min:10|max:20", "Email")
 console.log(result) 
@@ -38,8 +38,8 @@ To prevent Validator to be expensive in payload. it is decided to remove the rul
 `note! rules must be tight without spaces`</br>
 `note! validator is reusable, when rules are extended, it only need to be extended once`
 ```js
-import { Validator } from "@mytabworks/form-utils";
-import { max_size, min_size } from "@mytabworks/form-utils/extend/rules";
+import { Validator } from "mytabworks-utils";
+import { max_size, min_size } from "mytabworks-utils/extend/rules";
 
 Validator.rulesExtend({ max_size, min_size }) // extending max_size and min_size
 
@@ -56,8 +56,8 @@ console.log(result)
 ### Validator Customize Rule Usage
 Validator rules is extandable which is custom rules are applicable.
 ```js
-import { Validator } from "@mytabworks/form-utils";
-import { required_if, same } from "@mytabworks/form-utils/extend/rules";
+import { Validator } from "mytabworks-utils";
+import { required_if, same } from "mytabworks-utils/extend/rules";
 
 const strong_password = {
     regexp: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).+$/g,
@@ -175,7 +175,7 @@ The main validation rules which is commonly use.
 | alpha       | alpha                     | it will validate if the field value is only contain letter | The :attribute may only contain letters|
 
 ## Validator Extension Rules
-The extension rules that can be extended by importing [@mytabworks/form-utils/extend/rules](#validator-extend-rules-usage). these validation rules are excluded in the main rules because these are not often use in the form, so to reduce the payload mytabworks decided to remove these from the main list and became an extension when needed.
+The extension rules that can be extended by importing [mytabworks-utils/extend/rules](#validator-extend-rules-usage). these validation rules are excluded in the main rules because these are not often use in the form, so to reduce the payload mytabworks decided to remove these from the main list and became an extension when needed.
 |`NAME`       |`USE`                        |`DESCRIPTION`| `MESSAGE` |
 |-------------|---------------------------  |-------------|-------------|
 | alpha_space | alpha_space       | it will validate if the field only contain letters with spaces | The :attribute must contain alphabet with spaces |
@@ -192,7 +192,7 @@ it is use to fire the event after user done typing, that will save a lot of unes
 
 ### DoneTypingEvent Basic Usage
 ```js 
-import { DoneTypingEvent } from "@mytabworks/form-utils";
+import { DoneTypingEvent } from "mytabworks-utils";
 
 const typing = DoneTypingEvent(event => {
     /*triggered when done typing*/

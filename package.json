@@ -1,7 +1,7 @@
 {
-  "name": "@mytabworks/form-utils",
-  "version": "0.1.0",
-  "description": "this is a utilities for maximize forms",
+  "name": "mytabworks-utils",
+  "version": "1.1.0",
+  "description": "this is a utilities for maximize form fields",
   "main": "src/index.js",
   "scripts": {
     "test": "jest"
