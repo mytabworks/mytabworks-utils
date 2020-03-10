@@ -102,7 +102,7 @@ console.log(c_result)
 /*{ isInvalid: true, message: "The Confirm field is required when pass is .+." }*/
 
 /*To correct the message above, you must put a Alias(@) on the required_if "value" and "value of value".
-since most of the time field names are not the same as the labels and same with the values label that is why you can use Alias(@)*/
+since most of the time field names are not the same as the labels and same with the values label. that is why you can use Aliasing(@)*/
 const aliased_rules = "required_if:pass@Password=.+@contain value|same:pass@Password"
 const c_result2 = validator.validate(c_received, aliased_rules, c_label)
 console.log(c_result2)
@@ -184,8 +184,8 @@ The extension rules can only be use by extending and importing [`mytabworks-util
 | url         | url                         | it will validate if the field contain valid url | The :attribute must be a valid url. |
 | max_size    | max_size:<number>           | it will validate if the field contain a maximum file size and the size must calculate in kilobytes. `ex. max_size:5000`| The :attribute may not be greater :max_size kilobytes.|
 | min_size    | min_size:<number>           | it will validate if the field contain a minimum file size and the size must calculate in kilobytes. `ex. min_size:1000`| The :attribute must be atleast :min_size kilobytes.|
-| required_if | required_if:<target_field_name>=<target_expected_value> | it will require the field, if the target field matches the expected value. you can use exact value or regular expression like `required_if:bio=.+`. `.+` means has any value. `ex. required_if:country=AU` since most of the time field names are not the same as the labels and same with the values label that is why you can use Alias(@) `ex. required_if:country@Country=AU@Australia`  | The :attribute field is required when :required_if is :third_party. | 
-| same        | same:<target_field_name>               | it will validate the field until the target field contain the same value. `ex. same:pass` since most of the time field names are not the same as the labels you can use Alias(@) `ex. same:pass@Password` | The :attribute and :same must match. |
+| required_if | required_if:<target_field_name>=<target_expected_value> | it will require the field, if the target field matches the expected value. you can use exact value or regular expression like `required_if:bio=.+`. `.+` means has any value. `ex. required_if:country=AU` since most of the time field names are not the same as the labels and same with the values label. that is why you can use Aliasing(@) `ex. required_if:country@Country=AU@Australia`  | The :attribute field is required when :required_if is :third_party. | 
+| same        | same:<target_field_name>               | it will validate the field until the target field contain the same value. `ex. same:pass` since most of the time field names are not the same as the labels you can use Aliasing(@) `ex. same:pass@Password` | The :attribute and :same must match. |
 
 ## DoneTypingEvent
 it is use to fire the event after user done typing, that will save a lot of unessesary execution while typing, especially in React when using state
